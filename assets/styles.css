@@ -1,0 +1,412 @@
+/* ------------------------------------------------------------------
+   mryav.com — shared styles
+   Type: Neue Haas Grotesk Display Pro (design), Helvetica Neue fallback.
+   Drop woff2 files into /assets/fonts and uncomment the @font-face
+   blocks below to render the licensed family.
+   ------------------------------------------------------------------ */
+
+/*
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/NeueHaasDisplayLight.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/NeueHaasDisplayRoman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("fonts/NeueHaasDisplayBold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+:root {
+  --font-sans: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --ink: #000;
+  --wordmark: #202124;
+  --chrome-blue: #4287f6;
+  --firefox-red: #f1213e;
+  --muted-opacity: 0.6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+}
+
+/* Link that carries no underline — used where the design shows plain text */
+a.plain {
+  text-decoration: none;
+}
+
+a.plain:hover,
+a.plain:focus-visible {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ---------- Signature ---------- */
+
+.signature {
+  display: block;
+  width: 25.385px;
+  height: 18.374px;
+  flex: none;
+}
+
+/* "Love, Yav" sign-off, pinned to the bottom-right of the viewport */
+.signoff {
+  position: fixed;
+  right: 54px;
+  bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15.385px;
+  pointer-events: none;
+}
+
+/* ---------- Home ---------- */
+
+.home {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.home-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 15.385px;
+}
+
+.home-lines p {
+  margin: 0;
+}
+
+.home-greeting {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Measure-limited lines on the 404 */
+.wrap-316 {
+  max-width: 316px;
+}
+
+/* ---------- Anket landing ---------- */
+
+.anket {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.anket-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  padding: 0 16px;
+}
+
+.anket-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+}
+
+.wordmark {
+  margin: 0;
+  color: var(--wordmark);
+  font-size: 59.259px;
+  font-weight: 300;
+  letter-spacing: -2.963px;
+  white-space: nowrap;
+}
+
+.anket-copy .lede,
+.anket-copy .get-it {
+  margin: 0;
+  width: 240px;
+  font-size: 14px;
+  opacity: var(--muted-opacity);
+}
+
+.store-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.store-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.store-link:hover,
+.store-link:focus-visible {
+  opacity: 0.85;
+}
+
+.store-link--chrome {
+  background: var(--chrome-blue);
+}
+
+.store-link--edge {
+  background: #000;
+}
+
+.store-link--firefox {
+  background: var(--firefox-red);
+}
+
+.store-link .icon {
+  display: block;
+  flex: none;
+  overflow: hidden;
+}
+
+.store-link .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon--chrome {
+  width: 20px;
+  height: 17px;
+}
+
+.icon--edge {
+  width: 18px;
+  height: 17px;
+}
+
+.icon--firefox {
+  width: 15px;
+  height: 15px;
+}
+
+.privacy-link {
+  margin: 0;
+  font-size: 12px;
+  opacity: var(--muted-opacity);
+}
+
+.anket-shot {
+  flex: none;
+  width: 412px;
+  height: 370px;
+  overflow: hidden;
+}
+
+.anket-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Privacy policy ---------- */
+
+body.policy-page {
+  position: relative;
+}
+
+body.policy-page .signoff {
+  position: absolute;
+  bottom: 40px;
+}
+
+.policy {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.policy-inner {
+  width: 100%;
+  max-width: 700px;
+  padding: 124px 16px 120px;
+}
+
+.policy-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 7px;
+}
+
+.policy-head .wordmark {
+  font-size: 37.5px;
+  letter-spacing: -1.875px;
+}
+
+.policy-head .kicker {
+  margin: 0;
+  font-size: 14px;
+  opacity: var(--muted-opacity);
+}
+
+.doc {
+  max-width: 481px;
+  font-size: 14px;
+  opacity: var(--muted-opacity);
+}
+
+.doc h2 {
+  margin: 0 0 17px;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.doc p {
+  margin: 0 0 17px;
+}
+
+.doc ul {
+  margin: 0 0 17px;
+  padding: 0;
+}
+
+.doc li {
+  margin: 0;
+}
+
+.doc strong {
+  font-weight: 700;
+}
+
+/* Plain dash list — flush left, matching the design */
+.dash-list {
+  list-style: none;
+}
+
+.dash-list li::before {
+  content: "- ";
+}
+
+/* Bulleted list — hanging bullet, 1.5em indent */
+.bullet-list {
+  list-style: disc;
+  padding-left: 21px;
+}
+
+.doc a {
+  color: inherit;
+}
+
+/* Link that carries no underline — used where the design shows plain text */
+a.plain {
+  text-decoration: none;
+}
+
+a.plain:hover,
+a.plain:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .anket-row {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    height: auto;
+    gap: 40px;
+  }
+
+  .anket-shot {
+    width: 100%;
+    max-width: 412px;
+    height: auto;
+    aspect-ratio: 412 / 370;
+  }
+
+  .wordmark {
+    font-size: 48px;
+    letter-spacing: -2.4px;
+  }
+
+  .policy-inner {
+    padding: 72px 16px 120px;
+  }
+
+  .policy-head {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .policy-head .wordmark {
+    font-size: 32px;
+    letter-spacing: -1.6px;
+  }
+
+  .signoff {
+    right: 24px;
+    bottom: 24px;
+  }
+}
