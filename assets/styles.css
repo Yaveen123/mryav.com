@@ -1,36 +1,63 @@
 /* ------------------------------------------------------------------
    mryav.com — shared styles
-   Type: Neue Haas Grotesk Display Pro (design), Helvetica Neue fallback.
-   Drop woff2 files into /assets/fonts and uncomment the @font-face
-   blocks below to render the licensed family.
+
+   TYPE
+   The design is set in Neue Haas Grotesk Display Pro. All eight of its
+   weights install under the single family name "Neue Haas Grotesk
+   Display Pro" with non-standard style names ("45 Light", "55 Roman",
+   "75 Bold"), which browsers cannot map onto CSS font-weight — asking
+   that family for weight 300 or 400 lands on the XXThin face, and every
+   page renders hairline-thin.
+
+   So we never name that family directly. Instead each cut is bound to
+   the CSS weight it belongs to, addressed by its PostScript name, under
+   the alias "Neue Haas Display". Visitors without the font fall through
+   to Inter, a neo-grotesque with the same weight steps, self-hosted so
+   it renders identically everywhere and contacts no third party.
+
+   Weight mapping — 45 Light -> 300, 55 Roman -> 400, 75 Bold -> 700.
+
+   To serve Neue Haas to visitors too, you need a webfont licence from
+   Commercial Type (the desktop .ttf files in ~/Library/Fonts are not
+   licensed for embedding). With one, drop the woff2 files into
+   /assets/fonts and add a url() after each local() below.
    ------------------------------------------------------------------ */
 
-/*
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
-  src: url("fonts/NeueHaasDisplayLight.woff2") format("woff2");
+  font-family: "Neue Haas Display";
+  src: local("NeueHaasDisplay-Light"), local("Neue Haas Grotesk Display Pro 45 Light");
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
 }
+
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
-  src: url("fonts/NeueHaasDisplayRoman.woff2") format("woff2");
+  font-family: "Neue Haas Display";
+  src: local("NeueHaasDisplay-Roman"), local("Neue Haas Grotesk Display Pro 55 Roman");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
 }
+
 @font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
-  src: url("fonts/NeueHaasDisplayBold.woff2") format("woff2");
+  font-family: "Neue Haas Display";
+  src: local("NeueHaasDisplay-Bold"), local("Neue Haas Grotesk Display Pro 75 Bold");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
 }
-*/
+
+/* Inter (SIL Open Font License 1.1) — variable, latin subset */
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 :root {
-  --font-sans: "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Neue Haas Display", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --ink: #000;
   --wordmark: #202124;
   --chrome-blue: #4287f6;
@@ -57,6 +84,7 @@ body {
   line-height: 1.2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-synthesis-weight: none;
 }
 
 a {
@@ -254,6 +282,7 @@ img {
 .anket-shot {
   flex: none;
   width: 412px;
+  max-width: 100%;
   height: 370px;
   overflow: hidden;
 }
