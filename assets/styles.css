@@ -114,14 +114,19 @@ img {
   flex: none;
 }
 
-/* "Love, Yav" sign-off, pinned to the bottom-right of the viewport */
+/* "Love, Yav" sign-off — pinned to the bottom-right of the viewport, so it
+   stays put while the privacy policy scrolls underneath it. */
 .signoff {
   position: fixed;
   right: 54px;
-  bottom: 40px;
+  bottom: 32px;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 6px;
+  margin: 0;
+  padding: 8px 0 8px 14px;
+  background: #fff;
   font-size: 15.385px;
   pointer-events: none;
 }
@@ -296,15 +301,6 @@ img {
 
 /* ---------- Privacy policy ---------- */
 
-body.policy-page {
-  position: relative;
-}
-
-body.policy-page .signoff {
-  position: absolute;
-  bottom: 40px;
-}
-
 .policy {
   min-height: 100vh;
   min-height: 100svh;
@@ -434,8 +430,14 @@ a.plain:focus-visible {
     letter-spacing: -1.6px;
   }
 
+  /* The column runs full-width here, so the sign-off would clip a line of
+     text mid-scroll. Widen its white ground into a strip and text passes
+     cleanly beneath it instead. */
   .signoff {
+    left: 0;
     right: 24px;
-    bottom: 24px;
+    bottom: 0;
+    justify-content: flex-end;
+    padding: 12px 0 16px 24px;
   }
 }
