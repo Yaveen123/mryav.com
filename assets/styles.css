@@ -56,13 +56,42 @@
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+/* ------------------------------------------------------------------
+   SIZING
+   The Figma frames are drawn at a 14px base with 1.2 leading, which is
+   below what reads comfortably on the web. Everything below is set in
+   rem off a 16px root, so the whole page scales with the reader's own
+   browser font-size setting rather than pinning them to the design's
+   pixel values. Proportions from the design are preserved; the scale
+   they sit on is larger.
+
+   Floors held to: 16px minimum for body and interactive text, 1.5
+   leading for prose, 44px minimum hit area on the store buttons, and
+   muted text at 70% black (7.7:1 on white — AAA) rather than 60%.
+   ------------------------------------------------------------------ */
+
 :root {
   --font-sans: "Neue Haas Display", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
   --ink: #000;
   --wordmark: #202124;
-  --chrome-blue: #4287f6;
-  --firefox-red: #f1213e;
-  --muted-opacity: 0.6;
+  /* Darkened from the Figma swatches (#4287f6 / #f1213e), same hue: white
+     label text on the originals is 3.48:1 and 4.18:1, both under the 4.5:1
+     AA floor for normal-weight text. These read 4.8:1 and 5.0:1. */
+  --chrome-blue: #2f6fd8;
+  --firefox-red: #db1836;
+
+  /* 70% black = #4d4d4d, 7.7:1 on white */
+  --muted-opacity: 0.7;
+
+  --fs-body: 1rem;        /* 16px */
+  --fs-lead: 1.125rem;    /* 18px */
+  --fs-h2: 1.75rem;       /* 28px */
+  --fs-wordmark: clamp(3rem, 7vw, 4.5rem);
+  --fs-wordmark-sm: clamp(2rem, 5vw, 2.75rem);
+
+  --lh-display: 1.1;
+  --lh-body: 1.55;
 }
 
 *,
@@ -80,8 +109,9 @@ body {
   background: #fff;
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: var(--fs-body);
   font-weight: 400;
-  line-height: 1.2;
+  line-height: var(--lh-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-synthesis-weight: none;
@@ -89,6 +119,13 @@ body {
 
 a {
   color: inherit;
+}
+
+/* A focus ring that stays legible on white and on the coloured buttons. */
+a:focus-visible {
+  outline: 3px solid var(--wordmark);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Link that carries no underline — used where the design shows plain text */
@@ -105,12 +142,21 @@ img {
   max-width: 100%;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
 /* ---------- Signature ---------- */
 
 .signature {
   display: block;
-  width: 25.385px;
-  height: 18.374px;
+  width: 1.9rem;
+  height: 1.375rem;
   flex: none;
 }
 
@@ -118,20 +164,20 @@ img {
    stays put while the privacy policy scrolls underneath it. */
 .signoff {
   position: fixed;
-  right: 54px;
-  bottom: 32px;
+  right: 3.375rem;
+  bottom: 2rem;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.5rem;
   margin: 0;
-  padding: 8px 0 8px 14px;
+  padding: 0.5rem 0 0.5rem 0.875rem;
   background: #fff;
-  font-size: 15.385px;
+  font-size: var(--fs-lead);
   pointer-events: none;
 }
 
-/* ---------- Home ---------- */
+/* ---------- Home / 404 ---------- */
 
 .home {
   min-height: 100vh;
@@ -140,30 +186,33 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 1.5rem;
 }
 
 .home-lines {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.875rem;
   align-items: flex-start;
-  font-size: 15.385px;
+  font-size: var(--fs-lead);
 }
 
-.home-lines p {
+.home-lines p,
+.home-lines h1 {
   margin: 0;
+  font-size: inherit;
+  font-weight: 400;
 }
 
 .home-greeting {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.375rem;
 }
 
 /* Measure-limited lines on the 404 */
 .wrap-316 {
-  max-width: 316px;
+  max-width: 23rem;
 }
 
 /* ---------- Anket landing ---------- */
@@ -175,41 +224,41 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 1.5rem;
 }
 
 .anket-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 3rem;
   width: 100%;
-  max-width: 700px;
-  height: 400px;
-  padding: 0 16px;
+  max-width: 900px;
+  padding: 0 1rem;
 }
 
 .anket-copy {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 7px;
+  gap: 0.75rem;
 }
 
 .wordmark {
   margin: 0;
   color: var(--wordmark);
-  font-size: 59.259px;
+  font-size: var(--fs-wordmark);
   font-weight: 300;
-  letter-spacing: -2.963px;
+  line-height: var(--lh-display);
+  letter-spacing: -0.05em;
   white-space: nowrap;
 }
 
 .anket-copy .lede,
 .anket-copy .get-it {
   margin: 0;
-  width: 240px;
-  font-size: 14px;
+  max-width: 18rem;
+  font-size: var(--fs-body);
   opacity: var(--muted-opacity);
 }
 
@@ -217,24 +266,33 @@ img {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0.5rem;
 }
 
+/* padding + 1.55 leading clears a 44px hit area at every text size */
 .store-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 8px;
+  flex-wrap: wrap;
+  gap: 0.375rem 0.625rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 1rem;
+  max-width: 100%;
   color: #fff;
-  font-size: 14px;
+  font-size: var(--fs-body);
   text-decoration: none;
-  white-space: nowrap;
   transition: opacity 0.15s ease;
 }
 
-.store-link:hover,
-.store-link:focus-visible {
+/* Each label holds together, but "Coming soon!" may drop to a second line
+   rather than push the button past a narrow viewport. */
+.store-link > span {
+  white-space: nowrap;
+}
+
+a.store-link:hover,
+a.store-link:focus-visible {
   opacity: 0.85;
 }
 
@@ -248,6 +306,25 @@ img {
 
 .store-link--firefox {
   background: var(--firefox-red);
+}
+
+/* Awaiting store approval — greyed, inert, and saying so. #4d4d4d on
+   #e9e9eb is 7:1, so the label stays legible rather than "disabled-dim". */
+.store-link--soon {
+  background: #e9e9eb;
+  color: #4d4d4d;
+  cursor: default;
+}
+
+/* A full-colour browser mark on a grey button reads as still-active */
+.store-link--soon .icon img {
+  filter: grayscale(1);
+  opacity: 0.65;
+}
+
+/* 0.85 is the floor that still clears 4.5:1 on the grey (4.88:1) */
+.store-link--soon .soon {
+  opacity: 0.85;
 }
 
 .store-link .icon {
@@ -264,31 +341,31 @@ img {
 }
 
 .icon--chrome {
-  width: 20px;
-  height: 17px;
+  width: 1.5rem;
+  height: 1.275rem;
 }
 
 .icon--edge {
-  width: 18px;
-  height: 17px;
+  width: 1.35rem;
+  height: 1.275rem;
 }
 
 .icon--firefox {
-  width: 15px;
-  height: 15px;
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .privacy-link {
   margin: 0;
-  font-size: 12px;
+  font-size: var(--fs-body);
   opacity: var(--muted-opacity);
 }
 
 .anket-shot {
   flex: none;
-  width: 412px;
+  width: 494px;
   max-width: 100%;
-  height: 370px;
+  aspect-ratio: 412 / 370;
   overflow: hidden;
 }
 
@@ -307,127 +384,117 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  padding: 1.5rem;
 }
 
 .policy-inner {
   width: 100%;
-  max-width: 700px;
-  padding: 124px 16px 120px;
+  max-width: 840px;
+  padding: 7.5rem 1rem 8rem;
 }
 
 .policy-head {
   display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 7px;
+  align-items: baseline;
+  gap: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .policy-head .wordmark {
-  font-size: 37.5px;
-  letter-spacing: -1.875px;
+  font-size: var(--fs-wordmark-sm);
 }
 
 .policy-head .kicker {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fs-body);
   opacity: var(--muted-opacity);
 }
 
+/* ~68 characters at the base size — inside the 45–75 comfortable measure */
 .doc {
-  max-width: 481px;
-  font-size: 14px;
+  max-width: 36rem;
+  font-size: var(--fs-body);
   opacity: var(--muted-opacity);
 }
 
 .doc h2 {
-  margin: 0 0 17px;
-  font-size: 24px;
+  margin: 2.25rem 0 1rem;
+  font-size: var(--fs-h2);
   font-weight: 300;
-  line-height: 1.2;
+  line-height: var(--lh-display);
+}
+
+.doc > :first-child {
+  margin-top: 0;
 }
 
 .doc p {
-  margin: 0 0 17px;
+  margin: 0 0 1.5rem;
 }
 
 .doc ul {
-  margin: 0 0 17px;
+  margin: 0 0 1.5rem;
   padding: 0;
 }
 
 .doc li {
-  margin: 0;
+  margin: 0 0 0.375rem;
+}
+
+.doc li:last-child {
+  margin-bottom: 0;
 }
 
 .doc strong {
   font-weight: 700;
 }
 
-/* Plain dash list — flush left, matching the design */
+/* Plain dash list — flush left and tightly grouped, as in the design.
+   The 1.55 leading already separates the lines. */
 .dash-list {
   list-style: none;
+}
+
+.dash-list li {
+  margin-bottom: 0;
 }
 
 .dash-list li::before {
   content: "- ";
 }
 
-/* Bulleted list — hanging bullet, 1.5em indent */
+/* Bulleted list — hanging bullet */
 .bullet-list {
   list-style: disc;
-  padding-left: 21px;
+  padding-left: 1.5rem;
 }
 
 .doc a {
   color: inherit;
 }
 
-/* Link that carries no underline — used where the design shows plain text */
-a.plain {
-  text-decoration: none;
-}
-
-a.plain:hover,
-a.plain:focus-visible {
-  text-decoration: underline;
-}
-
 /* ---------- Responsive ---------- */
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   .anket-row {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    height: auto;
-    gap: 40px;
+    gap: 2.5rem;
   }
 
   .anket-shot {
-    width: 100%;
-    max-width: 412px;
-    height: auto;
-    aspect-ratio: 412 / 370;
-  }
-
-  .wordmark {
-    font-size: 48px;
-    letter-spacing: -2.4px;
+    width: 494px;
   }
 
   .policy-inner {
-    padding: 72px 16px 120px;
+    padding: 4.5rem 1rem 8rem;
   }
 
   .policy-head {
     flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .policy-head .wordmark {
-    font-size: 32px;
-    letter-spacing: -1.6px;
+    align-items: baseline;
+    gap: 0.75rem 1rem;
   }
 
   /* The column runs full-width here, so the sign-off would clip a line of
@@ -435,9 +502,9 @@ a.plain:focus-visible {
      cleanly beneath it instead. */
   .signoff {
     left: 0;
-    right: 24px;
+    right: 1.5rem;
     bottom: 0;
     justify-content: flex-end;
-    padding: 12px 0 16px 24px;
+    padding: 0.75rem 0 1rem 1.5rem;
   }
 }

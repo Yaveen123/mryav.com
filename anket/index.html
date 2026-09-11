@@ -16,34 +16,41 @@
         <p class="lede">The freshest version of your new tab page.</p>
         <p class="get-it">Get it on&hellip;</p>
 
-        <!-- Store listings are pending review — these point at /404.html until they're live. -->
+        <!-- Edge and Firefox listings are still in review. They are plain spans,
+             not links, so they take no keyboard focus while they lead nowhere;
+             swap each back to <a class="store-link store-link--edge" href="..">
+             and drop the "Coming soon!" span once it is live. -->
         <div class="store-links">
-          <a class="store-link store-link--chrome" href="/404.html">
-            <span class="icon icon--chrome"><img src="/assets/chrome.png" alt="" width="20" height="17"></span>
+          <a class="store-link store-link--chrome"
+             href="https://chromewebstore.google.com/detail/anket-new-tab-page/adbampbngjnjicfbfmbdljjdjkondbik?authuser=0&amp;hl=en"
+             target="_blank" rel="noopener">
+            <span class="icon icon--chrome"><img src="/assets/chrome.png" alt="" width="24" height="20"></span>
             <span>Chrome Web Store</span>
           </a>
-          <a class="store-link store-link--edge" href="/404.html">
-            <span class="icon icon--edge"><img src="/assets/edge.png" alt="" width="18" height="17"></span>
+          <span class="store-link store-link--soon">
+            <span class="icon icon--edge"><img src="/assets/edge.png" alt="" width="22" height="20"></span>
             <span>Edge Add-ons</span>
-          </a>
-          <a class="store-link store-link--firefox" href="/404.html">
-            <span class="icon icon--firefox"><img src="/assets/firefox.png" alt="" width="15" height="15"></span>
+            <span class="soon">Coming soon!</span>
+          </span>
+          <span class="store-link store-link--soon">
+            <span class="icon icon--firefox"><img src="/assets/firefox.png" alt="" width="18" height="18"></span>
             <span>Add-ons for Firefox</span>
-          </a>
+            <span class="soon">Coming soon!</span>
+          </span>
         </div>
 
         <p class="privacy-link"><a href="/anket/privacy-policy">Privacy Policy</a></p>
       </div>
 
       <div class="anket-shot">
-        <img src="/assets/anket-hero.png" alt="Anket new tab page showing a calendar countdown over a custom background" width="412" height="370">
+        <img src="/assets/anket-hero.png" alt="Anket new tab page showing a calendar countdown over a custom background" width="494" height="444">
       </div>
     </div>
   </main>
 
   <p class="signoff">
     <span>Love,</span>
-    <img class="signature" src="/assets/yav-signature.svg" alt="Yav" width="26" height="19">
+    <img class="signature" src="/assets/yav-signature.svg" alt="Yav" width="30" height="22">
   </p>
 </body>
 </html>
