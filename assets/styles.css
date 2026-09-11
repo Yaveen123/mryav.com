@@ -84,6 +84,9 @@
   /* 70% black = #4d4d4d, 7.7:1 on white */
   --muted-opacity: 0.7;
 
+  /* Sign-off hover highlight. Black on this reads 18.2:1. */
+  --highlight: #fff41c;
+
   --fs-body: 1rem;        /* 16px */
   --fs-lead: 1.125rem;    /* 18px */
   --fs-h2: 1.75rem;       /* 28px */
@@ -142,6 +145,20 @@ img {
   max-width: 100%;
 }
 
+/* Off-screen but still announced — carries destination context into a link's
+   accessible name without altering what is drawn. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -164,17 +181,40 @@ img {
    stays put while the privacy policy scrolls underneath it. */
 .signoff {
   position: fixed;
-  right: 3.375rem;
+  right: 2.75rem;
   bottom: 2rem;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   margin: 0;
-  padding: 0.5rem 0 0.5rem 0.875rem;
+  /* Padding is split between this and .signoff-link below: the link carries
+     the share that the hover box needs to sit on, this carries the rest, so
+     the white ground still reaches as far as it did and the signature stays
+     at 54px from the right and 43px from the bottom either way. */
+  padding: 0.125rem 0 0.125rem 0.25rem;
   background: #fff;
   font-size: var(--fs-lead);
+  /* The white ground is only there to keep scrolling text from running
+     through the signature — it must not swallow clicks meant for the page,
+     so only the link inside it is interactive. */
   pointer-events: none;
+}
+
+.signoff-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  color: inherit;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: background-color 0.12s ease;
+}
+
+/* Solid yellow box on hover, and on keyboard focus so both routes match */
+.signoff-link:hover,
+.signoff-link:focus-visible {
+  background: var(--highlight);
 }
 
 /* ---------- Home / 404 ---------- */
@@ -502,9 +542,9 @@ a.store-link:focus-visible {
      cleanly beneath it instead. */
   .signoff {
     left: 0;
-    right: 1.5rem;
+    right: 0.875rem;
     bottom: 0;
     justify-content: flex-end;
-    padding: 0.75rem 0 1rem 1.5rem;
+    padding: 0.375rem 0 0.625rem 1.5rem;
   }
 }

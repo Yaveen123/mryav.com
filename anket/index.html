@@ -4,8 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anket</title>
-  <meta name="description" content="The freshest version of your new tab page.">
+  <meta name="description" content="Count down to what matters every time you open a tab. Add your calendars, pick the events you care about, and set your own background — all stored on your own device. Free on the Chrome Web Store.">
+  <link rel="canonical" href="https://mryav.com/anket">
   <link rel="icon" href="/assets/favicon.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Link embeds. og:image must be an absolute URL — scrapers do not resolve
+       relative paths. The file is 1.88:1, near the 1.91:1 that Facebook,
+       LinkedIn, Slack and Discord lay out against, so it is shown whole
+       rather than centre-cropped. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Anket">
+  <meta property="og:url" content="https://mryav.com/anket">
+  <meta property="og:title" content="Anket — The freshest version of your new tab page">
+  <meta property="og:description" content="Count down to what matters every time you open a tab. Add your calendars, pick the events you care about, and set your own background — all stored on your own device. Free on the Chrome Web Store.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://mryav.com/assets/anket-og.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="680">
+  <meta property="og:image:alt" content="The Anket new tab page on a laptop: a soft illustrated meadow background with a sleeping rabbit, and a list of upcoming events counting down the days left.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anket — The freshest version of your new tab page">
+  <meta name="twitter:description" content="Count down to what matters every time you open a tab. Add your calendars, pick the events you care about, and set your own background — all stored on your own device. Free on the Chrome Web Store.">
+  <meta name="twitter:image" content="https://mryav.com/assets/anket-og.png">
+  <meta name="twitter:image:alt" content="The Anket new tab page on a laptop: a soft illustrated meadow background with a sleeping rabbit, and a list of upcoming events counting down the days left.">
+
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
@@ -49,8 +74,11 @@
   </main>
 
   <p class="signoff">
-    <span>Love,</span>
-    <img class="signature" src="/assets/yav-signature.svg" alt="Yav" width="30" height="22">
+    <a class="signoff-link" href="https://www.linkedin.com/in/yav1/" target="_blank" rel="noopener">
+      <span class="signoff-text">Love,</span>
+      <img class="signature" src="/assets/yav-signature.svg" alt="Yav" width="30" height="22">
+      <span class="visually-hidden"> on LinkedIn</span>
+    </a>
   </p>
 </body>
 </html>
